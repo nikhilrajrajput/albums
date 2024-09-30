@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AlbumList from './components/AlbumList';
+import AddAlbum from './components/AddAlbum';
+import EditAlbum from './components/EditAlbum';  // New EditAlbum component
+import Navbar from './components/Navbar';
+import { ToastContainer } from 'react-toastify';  // Import ToastContainer
+import 'react-toastify/dist/ReactToastify.css';   // Import toastify CSS
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <ToastContainer />  {/* Toast container for notifications */}
+      <Routes>
+        <Route path="/" element={<AlbumList />} />
+        <Route path="/add-album" element={<AddAlbum />} />
+        <Route path="/edit-album/:id" element={<EditAlbum />} /> {/* New edit route */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
