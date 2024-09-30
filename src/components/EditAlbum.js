@@ -13,15 +13,19 @@ const EditAlbum = () => {
     state.albums.albums.find((album) => album.id === parseInt(id))
   );
 
+  const [userId, setUserId] = useState(album ? album.userId : '');
   const [title, setTitle] = useState(album ? album.title : '');
 
   useEffect(() => {
-    if (album) setTitle(album.title);
+    if (album) {
+      setUserId(album.userId);
+      setTitle(album.title);
+    }
   }, [album]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedAlbum = { userId: album.userId, id: album.id, title };
+    const updatedAlbum = { userId: parseInt(userId), id: album.id, title };
     dispatch(updateAlbum(album.id, updatedAlbum));
     toast.success('Album updated successfully!');
     navigate('/');
@@ -29,12 +33,34 @@ const EditAlbum = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Album Title"
-      />
+      <div>
+        <label>User ID:</label>
+        <input
+          type="number"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+          placeholder="User ID"
+          required
+        />
+      </div>
+      <div>
+        <label>ID:</label>
+        <input
+          type="number"
+          value={album.id}
+          readOnly
+        />
+      </div>
+      <div>
+        <label>Title:</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Album Title"
+          required
+        />
+      </div>
       <button type="submit">Update Album</button>
     </form>
   );
