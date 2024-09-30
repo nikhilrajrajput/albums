@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAlbums, deleteAlbum } from '../redux/actions';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';  // Import toast
-import './AlbumList.css';  // Import CSS
+import { toast } from 'react-toastify';
+import './AlbumList.css';
 
 const AlbumList = () => {
   const dispatch = useDispatch();
@@ -20,21 +20,23 @@ const AlbumList = () => {
   };
 
   return (
-    <div>
+    <div className='main-container'>
       <h1>Albums</h1>
-      {albums.map((album) => (
-        <div className="album-container" key={album.id}>
-          <h3 className="album-title">{album.title}</h3>
-          <p><strong>User ID:</strong> {album.userId}</p>
-          <p><strong>ID:</strong> {album.id}</p>
-          <div className="button-container">
-            <Link to={`/edit-album/${album.id}`}>
-              <button className="edit-button">Edit</button>
-            </Link>
-            <button className="delete-button" onClick={() => handleDelete(album.id)}>Delete</button>
+      <div className='parent-container'>
+        {albums.map((album) => (
+          <div className="album-container" key={album.id}>
+            <h3 className="album-title">{album.title}</h3>
+            <p><strong>User ID:</strong> {album.userId}</p>
+            <p><strong>ID:</strong> {album.id}</p>
+            <div className="button-container">
+              <Link to={`/edit-album/${album.id}`}>
+                <button className="edit-button">Edit</button>
+              </Link>
+              <button className="delete-button" onClick={() => handleDelete(album.id)}>Delete</button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

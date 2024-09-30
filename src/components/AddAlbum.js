@@ -2,23 +2,23 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addAlbum } from '../redux/actions';
-import { toast } from 'react-toastify';  // Import toast
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
-import './AddAlbum.css';  // Import CSS
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import './AddAlbum.css';
 
 const AddAlbum = () => {
   const [userId, setUserId] = useState(1); // Default userId
   const [title, setTitle] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();  // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newAlbum = { userId, id: Date.now(), title }; // Generate a unique id
+    const newAlbum = { userId, id: Date.now(), title };
     dispatch(addAlbum(newAlbum));
     toast.success('Album added successfully!');
     setTitle('');
-    navigate('/');  // Redirect to the albums list after adding
+    navigate('/'); // Redirect to album list
   };
 
   return (

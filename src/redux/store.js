@@ -1,7 +1,7 @@
-// redux/store.js
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import {thunk} from 'redux-thunk';
-import { albumReducer } from './reducer';
+import { combineReducers } from 'redux';
+import albumReducer from './reducers';
 
 const rootReducer = combineReducers({
   albums: albumReducer,

@@ -1,12 +1,23 @@
 /* AlbumList.css */
-
-.album-container {
+.main-container {
+    padding: 20px;
+  }
+  
+  .parent-container {
+    display: flex;
+    flex-wrap: wrap;
+    
+  }
+  
+  .album-container {
     margin: 20px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
+    height: 200px;
+    width: 300px;
   }
   
   .album-title {
@@ -20,16 +31,12 @@
     gap: 10px;
   }
   
-  button {
+  .edit-button, .delete-button {
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    opacity: 0.9;
   }
   
   .edit-button {
@@ -40,5 +47,13 @@
   .delete-button {
     background-color: #dc3545;
     color: white;
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
   }
   

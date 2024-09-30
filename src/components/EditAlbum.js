@@ -1,20 +1,20 @@
 // components/EditAlbum.js
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateAlbum } from '../redux/actions';
 import { useParams, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';  // Import toast
+import { updateAlbum } from '../redux/actions';
+import { toast } from 'react-toastify';
+import './EditAlbum.css';
 
 const EditAlbum = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const album = useSelector((state) =>
-    state.albums.albums.find((album) => album.id === parseInt(id))
-  );
+  const navigate = useNavigate();
+  const albums = useSelector((state) => state.albums.albums);
+  const album = albums.find((album) => album.id === parseInt(id));
 
-  const [userId, setUserId] = useState(album ? album.userId : '');
-  const [title, setTitle] = useState(album ? album.title : '');
+  const [userId, setUserId] = useState(album?.userId || 1);
+  const [title, setTitle] = useState(album?.title || '');
 
   useEffect(() => {
     if (album) {
@@ -28,11 +28,15 @@ const EditAlbum = () => {
     const updatedAlbum = { userId: parseInt(userId), id: album.id, title };
     dispatch(updateAlbum(album.id, updatedAlbum));
     toast.success('Album updated successfully!');
-    navigate('/');
+    navigate('/'); // Redirect to album list
   };
 
+  if (!album) {
+    return <div>Album not found.</div>;
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="edit-album-form">
       <div>
         <label>User ID:</label>
         <input
@@ -46,8 +50,8 @@ const EditAlbum = () => {
       <div>
         <label>ID:</label>
         <input
-          type="number"
-          value={album.id}
+          type="text"
+          value={album.id} // Display the album ID
           readOnly
         />
       </div>

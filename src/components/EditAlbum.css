@@ -1,26 +1,26 @@
-/* AddAlbum.css */
-.add-album-form {
+/* EditAlbum.css */
+.edit-album-form {
     display: flex;
     flex-direction: column;
     width: 300px;
     margin: 20px auto;
   }
   
-  .add-album-form div {
+  .edit-album-form div {
     margin-bottom: 15px;
   }
   
-  .add-album-form label {
+  .edit-album-form label {
     margin-bottom: 5px;
   }
   
-  .add-album-form input {
+  .edit-album-form input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
-  .add-album-form button {
+  .edit-album-form button {
     padding: 10px;
     background-color: #007bff;
     color: white;
@@ -29,7 +29,7 @@
     cursor: pointer;
   }
   
-  .add-album-form button:hover {
+  .edit-album-form button:hover {
     background-color: #0056b3;
   }
   
