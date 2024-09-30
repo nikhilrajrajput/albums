@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav style={styles.navbar}>
-      <h2 style={styles.brand}>Album Manager</h2>
+     <h2 style={styles.brand}><Link to="/" style={styles.link}>Album Manager</Link></h2>
       <ul style={styles.navLinks}>
         <li style={styles.navItem}>
           <Link to="/" style={styles.link}>Albums</Link>
